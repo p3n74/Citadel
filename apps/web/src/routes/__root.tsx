@@ -22,11 +22,11 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
   head: () => ({
     meta: [
       {
-        title: "Citadel",
+        title: "Citadel Codex",
       },
       {
         name: "description",
-        content: "Citadel is a web application",
+        content: "Citadel Codex — The guide that channels information across the Citadel. Your home server's command center.",
       },
     ],
     links: [

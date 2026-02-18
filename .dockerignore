@@ -1,0 +1,31 @@
+# Dependencies (reinstalled in image)
+node_modules
+**/node_modules
+
+# Build outputs (rebuilt in image)
+apps/web/dist
+apps/server/dist
+packages/db/prisma/generated
+
+# Git and tooling
+.git
+.gitignore
+.cursor
+*.log
+.DS_Store
+
+# Local env (use build args or secrets in prod)
+.env
+.env.*
+!.env.example
+
+# Dev / test
+coverage
+*.lcov
+.idea
+.vscode
+*.tgz
+
+# Docs and misc
+*.md
+!apps/web/public/**/*.md

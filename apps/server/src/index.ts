@@ -6,6 +6,7 @@ import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { toNodeHandler } from "better-auth/node";
 import cors from "cors";
 import express from "express";
+import path from "node:path";
 
 const app = express();
 
@@ -30,9 +31,16 @@ app.use(
 
 app.use(express.json());
 
-app.get("/", (_req, res) => {
-  res.status(200).send("OK");
-});
+if (env.PUBLIC_DIR) {
+  app.use(express.static(env.PUBLIC_DIR));
+  app.get("*", (_req, res) => {
+    res.sendFile(path.join(env.PUBLIC_DIR!, "index.html"));
+  });
+} else {
+  app.get("/", (_req, res) => {
+    res.status(200).send("OK");
+  });
+}
 
 app.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");

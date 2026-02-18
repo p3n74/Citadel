@@ -22,24 +22,27 @@ export default function UserMenu() {
     return <Skeleton className="h-9 w-24" />;
   }
 
-  if (!session) {
+  if (!session?.user) {
     return (
       <Link to="/login">
-        <Button variant="outline">Sign In</Button>
+        <Button variant="ghost">Sign In</Button>
       </Link>
     );
   }
 
+  const { user } = session;
+  const displayName = user.name ?? user.email ?? "Account";
+
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="outline" />}>
-        {session.user.name}
+      <DropdownMenuTrigger render={<Button variant="ghost" />}>
+        {displayName}
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-card">
         <DropdownMenuGroup>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>{session.user.email}</DropdownMenuItem>
+          <DropdownMenuItem>{user.email ?? user.name ?? "—"}</DropdownMenuItem>
           <DropdownMenuItem
             variant="destructive"
             onClick={() => {
