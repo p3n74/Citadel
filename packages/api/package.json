@@ -1,0 +1,28 @@
+{
+  "name": "@Citadel/api",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@Citadel/auth": "*",
+    "@Citadel/db": "*",
+    "@Citadel/env": "*",
+    "@trpc/client": "^11.7.2",
+    "@trpc/server": "^11.7.2",
+    "better-auth": "^1.4.18",
+    "dotenv": "^17.2.2",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@Citadel/config": "*",
+    "@types/express": "^5.0.1",
+    "typescript": "^5"
+  }
+}

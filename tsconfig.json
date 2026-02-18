@@ -1,0 +1,3 @@
+{
+  "extends": "@Citadel/config/tsconfig.base.json"
+}

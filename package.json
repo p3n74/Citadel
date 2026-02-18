@@ -1,0 +1,39 @@
+{
+  "name": "Citadel",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "check-types": "turbo check-types",
+    "dev:native": "turbo -F native dev",
+    "dev:web": "turbo -F web dev",
+    "dev:server": "turbo -F server dev",
+    "db:push": "turbo -F @Citadel/db db:push",
+    "db:studio": "turbo -F @Citadel/db db:studio",
+    "db:generate": "turbo -F @Citadel/db db:generate",
+    "db:migrate": "turbo -F @Citadel/db db:migrate",
+    "db:start": "turbo -F @Citadel/db db:start",
+    "db:watch": "turbo -F @Citadel/db db:watch",
+    "db:stop": "turbo -F @Citadel/db db:stop",
+    "db:down": "turbo -F @Citadel/db db:down",
+    "check": "biome check --write ."
+  },
+  "dependencies": {
+    "@Citadel/env": "*",
+    "dotenv": "^17.2.2",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@Citadel/config": "*",
+    "@biomejs/biome": "^2.2.0",
+    "@types/bun": "^1.3.4",
+    "turbo": "^2.6.3",
+    "typescript": "^5"
+  },
+  "packageManager": "npm@11.8.0"
+}
