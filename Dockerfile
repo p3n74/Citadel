@@ -24,7 +24,9 @@ RUN npm ci
 COPY apps apps
 COPY packages packages
 
-# Generate Prisma client (required before server build)
+# Generate Prisma client (required before server build).
+# DATABASE_URL is required by prisma.config.ts but not used for generation; use a placeholder.
+ENV DATABASE_URL="postgresql://build:build@localhost:5432/build"
 RUN npm run db:generate
 
 # Build web and server
