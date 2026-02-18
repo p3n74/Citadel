@@ -1,0 +1,43 @@
+# Run app + Postgres in Docker (no external DB required).
+# Set in .env or override: BETTER_AUTH_SECRET, BETTER_AUTH_URL, CORS_ORIGIN.
+# After first start, run migrations once, e.g. from host: npm run db:push (with DATABASE_URL pointing at localhost:5432).
+
+name: Citadel
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: Citadel-postgres
+    environment:
+      POSTGRES_DB: Citadel
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - Citadel_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  app:
+    build: .
+    container_name: Citadel-app
+    environment:
+      DATABASE_URL: postgresql://postgres:password@postgres:5432/Citadel
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:-change-me-in-production}
+      BETTER_AUTH_URL: ${BETTER_AUTH_URL:-http://localhost:3001}
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3000}
+      NODE_ENV: production
+    ports:
+      - "3001:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  Citadel_postgres_data:

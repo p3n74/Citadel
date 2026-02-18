@@ -12,6 +12,7 @@ export default defineConfig({
     path: path.join("prisma", "migrations"),
   },
   datasource: {
-    url: env("DATABASE_URL"),
+    // Prefer process.env so Docker build (no .env) can pass DATABASE_URL inline; fallback to env() for local .env
+    url: process.env.DATABASE_URL ?? env("DATABASE_URL"),
   },
 });
