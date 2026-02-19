@@ -33,7 +33,7 @@ app.use(express.json());
 
 if (env.PUBLIC_DIR) {
   app.use(express.static(env.PUBLIC_DIR));
-  app.get("*", (_req, res) => {
+  app.get("/*path", (_req, res) => {
     res.sendFile(path.join(env.PUBLIC_DIR!, "index.html"));
   });
 } else {
