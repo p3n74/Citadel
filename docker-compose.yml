@@ -30,7 +30,7 @@ services:
       DATABASE_URL: postgresql://postgres:password@postgres:5432/Citadel
       BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:-change-me-in-production}
       BETTER_AUTH_URL: ${BETTER_AUTH_URL:-http://localhost:3001}
-      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3000}
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3001}
       NODE_ENV: production
     ports:
       - "3001:3001"

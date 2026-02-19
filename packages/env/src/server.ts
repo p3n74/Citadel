@@ -11,6 +11,7 @@ export const env = createEnv({
     NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
     /** Path to web app static files (production). When set, server serves the SPA. */
     PUBLIC_DIR: z.string().optional(),
+    PORT: z.coerce.number().default(3001),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
